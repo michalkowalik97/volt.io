@@ -13,7 +13,7 @@ class RepositoryFullName implements Rule
 
     public function message()
     {
-       return 'Invalid repository name. You should give full repository name eg.: laravel/laravel.';
+        return 'Invalid repository name. You should give full repository name eg.: laravel/laravel.';
     }
 
 }

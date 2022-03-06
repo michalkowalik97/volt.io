@@ -2,7 +2,9 @@
 
 namespace App\GitHubAPI\Exceptions;
 
-class ApiServiceException extends \Exception
+use Exception;
+
+class ApiServiceException extends Exception
 {
 
 }

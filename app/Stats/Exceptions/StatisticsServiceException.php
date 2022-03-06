@@ -2,7 +2,9 @@
 
 namespace App\Stats\Exceptions;
 
-class StatisticsServiceException extends \Exception
+use Exception;
+
+class StatisticsServiceException extends Exception
 {
 
 }
