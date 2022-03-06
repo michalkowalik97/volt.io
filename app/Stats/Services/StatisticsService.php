@@ -19,7 +19,6 @@ class StatisticsService
         $firstRepoData = $this->getBaseRepoDataFromApi($requestDataDTO->firstRepoName);
         $secondRepoData = $this->getBaseRepoDataFromApi($requestDataDTO->secondRepoName);
 
-        //append nested data
         $firstRepoData = $this->appendAdditionalData($firstRepoData);
         $secondRepoData = $this->appendAdditionalData($secondRepoData);
 
@@ -70,6 +69,10 @@ class StatisticsService
             }
 
             $totals[$key]['diff'] = abs($repositories[0][$key] - $repositories[1][$key]);
+            if ($repositories[0][$key] === 0 || $repositories[1][$key] === 0) {
+                $totals[$key]['percent'] = 0;
+                continue;
+            }
             $totals[$key]['percent'] = ($repositories[0][$key] / $repositories[1][$key]) * 100;
             $totals[$key]['percent'] = round($totals[$key]['percent'], 2);
         }
@@ -79,10 +82,7 @@ class StatisticsService
 
     private function repoDataToArray(array $repoData): array
     {
-        /*the number of forks, stars, and watchers,
-● the date of the latest release,
 
-● the number of open pull requests and the number of closed pull requests.*/
         return [
             'name'            => $repoData['full_name'],
             'stargazers'      => $repoData['stargazers_count'],
