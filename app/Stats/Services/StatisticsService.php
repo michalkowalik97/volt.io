@@ -59,12 +59,12 @@ class StatisticsService
             }
             if (stripos($key, '_at') !== false) {
                 if ($repositories[0][$key] === null || $repositories[1][$key] === null) {
-                    $totals[$key] = 'n/a';
+                    $totals[$key] = 'N/A';
                     continue;
                 }
                 $date1 = new Carbon($repositories[0][$key]);
-                $date2 = new Carbon($repositories[0][$key]);
-                $totals[$key] = $date1->diffInDays($date2);
+                $date2 = new Carbon($repositories[1][$key]);
+                $totals[$key.'_diff_days']= $date1->diffInDays($date2);
                 continue;
             }
 
